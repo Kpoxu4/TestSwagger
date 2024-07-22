@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using TestSwaggerData;
 using TestSwaggerData.Interfaces;
 using TestSwaggerData.Repositories;
@@ -7,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<Context>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.MaxDepth = 64; // Увеличьте глубину при необходимости
+});
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();

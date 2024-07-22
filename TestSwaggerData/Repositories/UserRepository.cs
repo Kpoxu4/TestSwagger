@@ -15,6 +15,6 @@ namespace TestSwaggerData.Repositories
                         .Where(u => u.ToDoItems.Any(t => t.Priority.Level == taskLevel))
                         .Include(u => u.ToDoItems)
                         .ToList();
-        }
+        }       
     }
 }

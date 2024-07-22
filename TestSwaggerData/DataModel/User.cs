@@ -9,6 +9,6 @@ namespace TestSwaggerData.DataModel
     public class User : BaseModel
     {
         public string Name { get; set; }
-        public virtual List<ToDoItem> ToDoItems { get; set; }   
+        public virtual List<ToDoItem> ToDoItems { get; set; }  = new List<ToDoItem>();
     }
 }

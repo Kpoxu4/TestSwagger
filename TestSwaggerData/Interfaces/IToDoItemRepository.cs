@@ -8,5 +8,7 @@ namespace TestSwaggerData.Interfaces
     {
         List<ToDoItem> AllToDoItemForUser(int userId);
         List<ToDoItem> ListOfTasksForCertainLevel(TaskPriority taskLevel);
+        List<ToDoItem> FilterByStatus(bool status);
+        void AddUser(User user, ToDoItem toDoItem);
     }
 }

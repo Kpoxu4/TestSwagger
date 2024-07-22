@@ -6,6 +6,6 @@ namespace TestSwaggerData.Interfaces
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        List<User> UserForTaskLevel(TaskPriority taskLevel);
+        List<User> UserForTaskLevel(TaskPriority taskLevel);     
     }
 }

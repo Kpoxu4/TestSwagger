@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shared.Enum;
+using System.Threading.Tasks;
 using TestSwagger.ApiModel;
 using TestSwaggerData.DataModel;
 using TestSwaggerData.Interfaces;
@@ -49,6 +50,32 @@ namespace TestSwagger.Controllers
             _toDoItemRepository.Create(newtoDoItem);
             _priorityRepository.AddToDoItemInList(priority, newtoDoItem);
             return Ok("Create completed");
+        }
+
+        [HttpGet]
+        [Route("filter")]
+        public IActionResult FilterToDoItemsByStatus([FromQuery]bool isCompleted)
+        {
+            var toDoItems = _toDoItemRepository.FilterByStatus(isCompleted);
+            return Ok(toDoItems);
+        }
+
+        [HttpGet]
+        [Route("assign-todo")]
+        public IActionResult AssignToDoItemToUser([FromQuery] int userId, [FromQuery] int toDoItemId)
+        {
+            var toDoItem = _toDoItemRepository.Get(toDoItemId);
+            var user = _userRepository.Get(userId);
+
+            if (toDoItem == null || user == null)
+            {
+                return BadRequest("Task or User not found");
+            }
+                      
+            _toDoItemRepository.AddUser(user, toDoItem);
+           
+
+            return Ok("Completed");
         }
     }
 }

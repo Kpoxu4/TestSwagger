@@ -39,7 +39,7 @@ namespace TestSwaggerData
             modelBuilder.Entity<ToDoItem>(entity =>
             {
                 entity.HasOne(x => x.Priority)
-                      .WithMany(x => x.ToDoItems)
+                      .WithMany(x => x.ToDoItems)                    
                       .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(x => x.User)
